@@ -8,6 +8,7 @@ class UserController extends Controller
 {
     public function index(){
 
+
         if (request()->has('empty')){
              $users=[];
         }else{
@@ -24,7 +25,7 @@ class UserController extends Controller
 
                $titulo ='Usuarios Registrados';
 
-        return view('users.users',
+        return view('users.index',
         ['users' => $users,
          'title'=> $titulo]);
           /*dd(compact('title','users'));*/

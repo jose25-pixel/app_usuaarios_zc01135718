@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 /*$this->WithoutExceptionHandling();*/
 Route::get('/usuarios','UserController@index');
 
