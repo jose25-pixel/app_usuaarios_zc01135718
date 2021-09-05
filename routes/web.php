@@ -16,6 +16,12 @@
 Route::get('/usuarios','UserController@index');
 
 
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
 /*Route::get('/usuarios', function(){
     return "Usuarios Registrados";
 
