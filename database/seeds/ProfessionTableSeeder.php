@@ -11,10 +11,19 @@ class ProfessionTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('profession')->insert([
+     /*DB::statement('SET FOREIGN_KEY_CHECKS =0');
+     DB::table('profession')->truncate();
+     DB::statement('SET FOREIGN_KEY_CHECKS =1');*/
+
+
+      /*  DB::table('profession')->insert([
          'title'=> 'programador'
-        ]);
-         DB::table('profession')->insert([
+        ]);*/
+     //DB::insert('INSERT INTO profession(title) VALUES ("desarollador Bank.end")');
+        //sentencia sql en laravel para borar registro de la bd
+     DB::delete('DELETE FROM profession WHERE  id=9');
+     DB::insert('INSERT INTO profession(title) VALUES(?)', ['desarollador Bank.end']);
+     DB::table('profession')->insert([
          'title'=> 'diseñador 3'
         ]);
     DB::table('profession')->insert([
@@ -35,9 +44,10 @@ class ProfessionTableSeeder extends Seeder
     DB::table('profession')->insert([
          'title'=> 'diseñador 2'
         ]);
-     DB::table('profession')->insert([
+     /*DB::table('profession')->insert([
          'title'=> 'Sistemas Operativos'
-        ]);
+        ]);*/
+
          DB::table('profession')->insert([
          'title'=> 'diseñador'
         ]);

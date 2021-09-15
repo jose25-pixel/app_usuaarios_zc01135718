@@ -11,31 +11,40 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+   /* DB::statement('SET FOREIGN_KEY_CHECKS =0');
+     DB::table('users')->truncate();
+     DB::statement('SET FOREIGN_KEY_CHECKS =1');*/
+     //codigo para hacer un select a otra tabla referenciada
+  //   $profesiones = DB::select('SELECT  id FROM profession WHERE title ="desarollador Bank.end"');
+  // dd($profesiones[0]->id);
+     //consulta utilizando el construtor de laravel
+  /******+++++otra forma de costrutor sql de laravel++++++++++++*/
+   $profesiones= DB::table('profession')->select('id')->take(2)->get();
+   // dd($profesiones);
         DB::table('users')->insert([
          'name'=> 'Rodolfo',
          'email'=> 'joseRodolfo@gmail.com',
-         'profession_id'=> '10',
-         'password'=> '12347'
+         'profession_id'=> $profesiones[0]->id,//le pasamos la varaible de la consulta
+         'password'=> bcrypt('12347')
         ]);
         DB::table('users')->insert([
          'name'=> 'Juana',
-
-
          'email'=> 'juanaguadalupe@gmail.com',
          'profession_id'=> '9',
-         'password'=> '888883'
+         'password'=> bcrypt('888883')
         ]);
          DB::table('users')->insert([
          'name'=> 'Leonel',
          'email'=> 'leonel@gmail.com',
          'profession_id'=> '8',
-         'password'=> '1234casa7'
+         'password'=> bcrypt('1234casa7')
         ]);
           DB::table('users')->insert([
          'name'=> 'Carlos',
          'email'=> 'carlos@gmail.com',
          'profession_id'=> '7',
-         'password'=> '12347_ff'
+         'password'=> bcrypt('12347_ff')
+
         ]);
         DB::table('users')->insert([
          'name'=> 'Alberto',
