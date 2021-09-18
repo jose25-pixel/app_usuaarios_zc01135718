@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Profession;
+use faker\Factory;// es para los datos de prueva de los factory
 
 class ProfessionTableSeeder extends Seeder
 {
@@ -21,12 +23,12 @@ class ProfessionTableSeeder extends Seeder
         ]);*/
      //DB::insert('INSERT INTO profession(title) VALUES ("desarollador Bank.end")');
         //sentencia sql en laravel para borar registro de la bd
-     DB::delete('DELETE FROM profession WHERE  id=9');
+   // DB::delete('DELETE FROM profession WHERE  id=9');
      DB::insert('INSERT INTO profession(title) VALUES(?)', ['desarollador Bank.end']);
-     DB::table('profession')->insert([
+      Profession::create([
          'title'=> 'diseñador 3'
         ]);
-    DB::table('profession')->insert([
+    Profession::create([
          'title'=> 'Arquitecto'
         ]);
     DB::table('profession')->insert([
@@ -51,5 +53,6 @@ class ProfessionTableSeeder extends Seeder
          DB::table('profession')->insert([
          'title'=> 'diseñador'
         ]);
+           factory(Profession::class,40)->create();
     }
 }
