@@ -25,6 +25,8 @@ class ProfessionTableSeeder extends Seeder
         //sentencia sql en laravel para borar registro de la bd
    // DB::delete('DELETE FROM profession WHERE  id=9');
      DB::insert('INSERT INTO profession(title) VALUES(?)', ['desarollador Bank.end']);
+
+
       Profession::create([
          'title'=> 'diseñador 3'
         ]);
@@ -32,6 +34,7 @@ class ProfessionTableSeeder extends Seeder
          'title'=> 'Arquitecto'
         ]);
     DB::table('profession')->insert([
+
          'title'=> 'Abogado'
         ]);
     DB::table('profession')->insert([

@@ -11,7 +11,9 @@
 @if(!empty($users))
     <ul>
         @foreach($users as $user)
-            <li>{{$user}}</li>
+            <li>{{$user->name}},{{$user->email}}
+         <a href=" {{url("/usuarios/{$user->id}")}} " title=""> Ver Usuario</a>
+              </li>
         @endforeach
       </ul>
   @else

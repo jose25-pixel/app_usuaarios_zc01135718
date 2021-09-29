@@ -26,4 +26,10 @@ function cargar_detalle_usuario(){
     ->assertStatus(200)
     ->assertSee('Mostrando detalle del usuario');
 }
+/** @test**/
+function error_404(){
+    $this->get('/usuarios/100')
+    ->assertStatus(404)
+    ->assertSee('Usuario no encontrado');
+}
 }
