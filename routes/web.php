@@ -33,7 +33,7 @@ Route::get('/', function () {
 });*/
 Route::get('/usuarios/nuevo', 'UserController@create');
 //imprime  el mensaje usuarios/i pones un numero se pone en el navegador
-
+Route::post('/usuarios/crear','UserController@store');
 /*Route::get('/usuarios/{id}', function ($id){
     return "Mostrando detalle del usuario:{$id}";
 })->where('id','[0-9]+');*/

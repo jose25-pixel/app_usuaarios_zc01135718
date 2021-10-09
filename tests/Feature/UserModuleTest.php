@@ -25,6 +25,7 @@ function cargar_detalle_usuario(){
     $this->get('/usuarios/5')
     ->assertStatus(200)
     ->assertSee('Mostrando detalle del usuario');
+
 }
 /** @test**/
 function error_404(){
@@ -32,4 +33,42 @@ function error_404(){
     ->assertStatus(404)
     ->assertSee('Usuario no encontrado');
 }
+        /** @test**/
+        function test_nuevo_usuario(){
+            $this->post('/usuarios/',
+                [
+              'name'=>'Juana',
+             'email'=>'juanaguadalupe@gmail.com',
+             'password'=>'12345678'])
+            ->assertSee('Procesando Informacion');
+
+     $this->assertDatabaseHas('users',[
+            'name'=>'Juana',
+             'email'=>'josecrus@gmail.com',
+             'password'=>'12345678']);
+
+          $this->assertCredentials([
+           'name'=>'Juana',
+             'email'=>'juanaguadalupe@gmail.com',
+             'password'=>'12345678']);
+
+        }
+
+
+        /** @test**/
+function elcampo_nombre_requerido(){
+    //$this->withoutExceptionHandling();
+    $this->from('usuarios/nuevo')->post('/usuarios/',[
+             'name'=>'Juana',
+             'email'=>'juanaguadalupe@gmail.com',
+             'password'=>'12345678'
+
+           ])->assertRedirect('usuarios/nuevo')->assertSessionHasErrors(['name'=>'El campo nombre es obligatorio']);
+     $this->assertDatabaseMissing('users',[
+
+             'email'=>'juanaguadalupe@gmail.com',
+
+           ]);
+}
+
 }

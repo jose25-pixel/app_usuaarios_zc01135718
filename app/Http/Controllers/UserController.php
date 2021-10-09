@@ -48,6 +48,45 @@ $users=User::all();
     }
 
     public function create(){
-        return "Crear nuevo usuario";
+       // return "Crear nuevo usuario";
+        $user = new User();
+          return view('users.crear',compact('user'));
+        //return view('users.crear');
     }
+
+    public function store(){
+   $data= request()->validate([
+      'name' => 'required',
+      'email' =>['required','email','unique:users,email'],
+      'password'=>'required'],
+      ['name.required'=>'El campo nombre es obligatorio',
+      'email.required'=>'El campo email es obligatorio',
+      'password.required'=>'El campo password es obligatorio'
+  ]
+
+   );
+///arriba en el metodo store Request $request
+/*$data = Request()->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+
+]);*/
+/*if(empty($data['name'])){
+    return redirect('/usuarios/nuevo')->withErrors([
+     'name'=>'El campo nombre es obligatorio'
+     ]);
+}*/
+   User::create([
+       'name'=> $data['name'],
+       'email'=> $data['email'],
+       'password'=> bcrypt($data['password'])
+   ]);
+   return redirect('/usuarios/');
+        //return 'Procesando Informacion';
+   //User::create($data);
+
+        return redirect('/usuarios/');
+    }
+
 }
